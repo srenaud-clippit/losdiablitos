@@ -1,7 +1,9 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { site } from '../data/site';
-import { withBase } from '../lib/url';
+import { rel } from '../lib/url';
+
+const R = Astro.url.pathname;
 
 const events = [
   {
@@ -34,7 +36,7 @@ const events = [
 <Layout title="Evènements">
   <div
     class="page-hero"
-    style={`background-image: url('${withBase('/uploads/2024/08/Event3-scaled.jpg')}');`}
+    style={`background-image: url('${rel(R, '/uploads/2024/08/Event3-scaled.jpg')}');`}
   >
     <h1>Evènements</h1>
   </div>
@@ -44,7 +46,7 @@ const events = [
       <p class="intro text-center">
         Voilà nos prochains rendez-vous… N'hésitez pas à nous solliciter via notre mail
         <a href={`mailto:${site.email}`}>{site.email}</a> ou via notre
-        <a href={withBase('/nous-contacter/')}>page contact</a>.
+        <a href={rel(R, '/nous-contacter/')}>page contact</a>.
       </p>
 
       <div class="events">

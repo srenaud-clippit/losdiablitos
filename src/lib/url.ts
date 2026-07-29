@@ -1,19 +1,19 @@
-// Préfixe tous les chemins internes (assets, liens) par la `base` Astro
-// configurée (ex. « /V4 »), afin que le site fonctionne dans un sous-répertoire.
-const BASE = import.meta.env.BASE_URL; // ex. "/V4/" ou "/"
+// Chemins RELATIFS et portables : le site fonctionne quel que soit l'endroit
+// où on le dépose (racine, /V4, /test, dossier renommé…) sans reconstruction.
+//
+// Comme les pages sont à des profondeurs différentes dans l'arborescence
+// (ex. /index.html vs /lescours/index.html), le préfixe relatif ("./" ou "../")
+// dépend de la page courante : on le calcule depuis son pathname.
 
-export function withBase(path: string): string {
-  const base = BASE.replace(/\/$/, ''); // enlève le slash final -> "/V4" ou ""
-  const p = path.startsWith('/') ? path : `/${path}`;
-  return `${base}${p}`;
+/** Préfixe relatif menant à la racine du site depuis la page courante. */
+export function rootPrefix(pathname: string): string {
+  const segs = pathname.split('/').filter(Boolean);
+  const lastIsFile = segs.length > 0 && segs[segs.length - 1].includes('.');
+  const depth = lastIsFile ? segs.length - 1 : segs.length;
+  return depth === 0 ? './' : '../'.repeat(depth);
 }
 
-// Chemin (pathname) courant ramené à la racine du site (sans la base),
-// pour comparer les liens de navigation actifs.
-export function relPath(pathname: string): string {
-  const base = BASE.replace(/\/$/, '');
-  if (base && pathname.startsWith(base)) {
-    return pathname.slice(base.length) || '/';
-  }
-  return pathname;
+/** Construit un chemin relatif portable vers `path` (ex. "/uploads/x.jpg"). */
+export function rel(pathname: string, path: string): string {
+  return rootPrefix(pathname) + path.replace(/^\//, '');
 }

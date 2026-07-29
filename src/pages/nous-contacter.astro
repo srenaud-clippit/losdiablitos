@@ -1,13 +1,15 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { site, contacts } from '../data/site';
-import { withBase } from '../lib/url';
+import { rel } from '../lib/url';
+
+const R = Astro.url.pathname;
 ---
 
 <Layout title="Nous contacter">
   <div
     class="page-hero"
-    style={`background-image: url('${withBase('/uploads/2022/08/volunteers-hero.jpg')}');`}
+    style={`background-image: url('${rel(R, '/uploads/2022/08/volunteers-hero.jpg')}');`}
   >
     <h1>Nous contacter</h1>
   </div>

@@ -1,12 +1,14 @@
 ---
 import { site } from '../data/site';
-import { withBase } from '../lib/url';
+import { rel } from '../lib/url';
+
+const R = Astro.url.pathname;
 ---
 
 <footer class="site-footer">
   <div class="container footer-grid">
     <div class="footer-col">
-      <img src={withBase(site.logo)} alt="Los Diablitos" class="footer-logo" width="150" height="64" />
+      <img src={rel(R, site.logo)} alt="Los Diablitos" class="footer-logo" width="150" height="64" />
       <p>Association de danse Salsa, Bachata et Kizomba (SBK) sur le secteur de Thoiry (Yvelines).</p>
     </div>
 
@@ -20,7 +22,7 @@ import { withBase } from '../lib/url';
     <div class="footer-col">
       <h4>Liens</h4>
       <ul>
-        <li><a href={withBase(site.reglement)} target="_blank" rel="noopener">Règlement Intérieur</a></li>
+        <li><a href={rel(R, site.reglement)} target="_blank" rel="noopener">Règlement Intérieur</a></li>
         <li><a href={site.facebook} target="_blank" rel="noopener">Facebook</a></li>
         <li><a href={`mailto:${site.email}`}>{site.email}</a></li>
       </ul>

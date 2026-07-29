@@ -3,9 +3,14 @@ import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
   site: 'https://www.losdiablitos.fr',
-  // Le site est servi depuis le sous-répertoire /V4 sur l'hébergement OVH.
-  // Pour le déployer à la racine (ou sur un sous-domaine), remettre base: '/'.
-  base: '/V4',
+  // Chemins relatifs et portables : aucun préfixe (base) codé en dur.
+  // Le site peut être déposé à la racine ou dans n'importe quel sous-répertoire
+  // (voir src/lib/url.ts) sans reconstruction.
   trailingSlash: 'always',
+  // Inline le CSS dans le HTML : aucun fichier /_astro/*.css en chemin absolu,
+  // le site reste donc entièrement portable (déplaçable dans n'importe quel dossier).
+  build: {
+    inlineStylesheets: 'always',
+  },
   integrations: [sitemap()],
 });

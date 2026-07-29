@@ -1,18 +1,19 @@
 ---
 import { nav, site } from '../data/site';
-import { withBase, relPath } from '../lib/url';
+import { rel } from '../lib/url';
 
 interface Props {
   transparent?: boolean;
 }
 const { transparent = false } = Astro.props;
-const current = relPath(Astro.url.pathname);
+const R = Astro.url.pathname;
+const current = R;
 ---
 
 <header class:list={['site-header', { transparent }]}>
   <div class="header-inner container">
-    <a href={withBase('/')} class="logo" aria-label="Los Diablitos — Accueil">
-      <img src={withBase(site.logo)} alt="Los Diablitos" width="150" height="64" />
+    <a href={rel(R, '/')} class="logo" aria-label="Los Diablitos — Accueil">
+      <img src={rel(R, site.logo)} alt="Los Diablitos" width="150" height="64" />
     </a>
 
     <button class="nav-toggle" aria-label="Ouvrir le menu" aria-expanded="false">
@@ -25,7 +26,7 @@ const current = relPath(Astro.url.pathname);
           nav.map((item) => (
             <li>
               <a
-                href={withBase(item.href)}
+                href={rel(R, item.href)}
                 class:list={[{ active: current === item.href }]}
               >
                 {item.label}

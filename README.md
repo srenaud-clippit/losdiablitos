@@ -29,21 +29,21 @@ src/
 public/uploads/   Vidéo, logos, images et PDF (règlement, fiche d'inscription)
 ```
 
-## Déploiement chez OVH (sous-répertoire /V4)
+## Déploiement chez OVH (site portable)
 
-Le site est configuré pour être servi depuis **`https://www.losdiablitos.fr/V4/`**
-(`base: '/V4'` dans `astro.config.mjs`).
+Le site utilise **des chemins entièrement relatifs** : il fonctionne quel que soit
+l'endroit où on le dépose (racine du domaine, `/V4`, `/test`, dossier renommé…),
+**sans aucune reconstruction ni configuration** (voir `src/lib/url.ts` et
+`inlineStylesheets: 'always'` dans `astro.config.mjs`).
 
 1. Générer le site : `npm install` puis `npm run build`.
-2. Envoyer **tout le contenu du dossier `dist/`** dans le répertoire `V4/` de
+2. Envoyer **tout le contenu du dossier `dist/`** dans le répertoire voulu de
    l'hébergement OVH (via FTP/SFTP — FileZilla — ou le gestionnaire de fichiers OVH).
-   La structure finale doit être `.../V4/index.html`, `.../V4/uploads/…`, etc.
-3. Ouvrir `https://www.losdiablitos.fr/V4/`.
-
-> **Changer d'emplacement.** Pour déployer à la racine du domaine (ou sur un
-> sous-domaine), remettre `base: '/'` dans `astro.config.mjs` et reconstruire.
-> Pour un autre sous-répertoire, mettre `base: '/nom-du-repertoire'`. Tous les
-> chemins internes s'adaptent automatiquement (voir `src/lib/url.ts`).
+   Par exemple, pour un aperçu : copier dans `V4/` → le site est visible sur
+   `https://www.losdiablitos.fr/V4/`. Pour le mettre en production : copier
+   directement à la racine (`www/`).
+3. Déplacer ou renommer le dossier plus tard ne casse rien : les liens et assets
+   restent relatifs.
 
 > **Note.** La vidéo d'accueil fait ~32 Mo ; vérifier le quota d'espace OVH.
 > Les polices (Google Fonts) sont chargées depuis un CDN externe.

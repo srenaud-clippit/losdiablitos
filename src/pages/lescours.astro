@@ -1,0 +1,174 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { site } from '../data/site';
+
+// Horaires et professeurs — saison 2026/2027
+const schedule = [
+  {
+    dance: 'Salsa',
+    teacher: 'Filipe El Diablito',
+    day: 'Mercredi',
+    slots: [
+      { level: 'Débutant', time: '19h – 20h' },
+      { level: 'Avancé', time: '20h – 21h' },
+      { level: 'Intermédiaire', time: '21h – 22h' },
+    ],
+  },
+  {
+    dance: 'Bachata',
+    teacher: 'Vincent DG',
+    day: 'Lundi',
+    slots: [
+      { level: 'Débutant', time: '20h – 21h' },
+      { level: 'Intermédiaire', time: '21h – 22h' },
+    ],
+  },
+  {
+    dance: 'Kizomba',
+    teacher: 'Michel',
+    day: 'Jeudi',
+    slots: [
+      { level: 'Débutant', time: '19h30' },
+      { level: 'Intermédiaire', time: '20h30' },
+    ],
+  },
+];
+---
+
+<Layout title="Les cours">
+  <div
+    class="page-hero"
+    style="background-image: url('/uploads/2024/08/103.jpg');"
+  >
+    <h1>Les cours</h1>
+  </div>
+
+  <section class="section">
+    <div class="container prose" style="max-width: 860px;">
+      <p>
+        L'inscription aux cours est annuelle (inscription lors du premier cours). Les cours
+        <strong>2026/2027</strong> reprennent à la rentrée de septembre. Le 1er cours d'essai est
+        gratuit et les inscriptions en cours d'année sont aussi possibles… De plus, les cours sont
+        gratuits en septembre pour les débutants !
+      </p>
+
+      <p>
+        Deux façons de s'inscrire :
+      </p>
+      <ul>
+        <li>
+          <strong>En ligne</strong> via HelloAsso (paiement de l'adhésion et tarifs à jour) ;
+        </li>
+        <li>
+          <strong>Sur papier</strong> : fiche d'inscription à apporter en cours (le lundi, le
+          mercredi ou le jeudi).
+        </li>
+      </ul>
+
+      <p class="text-center">
+        <a href={site.ficheInscription} class="btn" target="_blank" rel="noopener">
+          &gt;&gt; Fiche d'inscription 2026/2027 &lt;&lt;
+        </a>
+      </p>
+
+      <p>
+        Pour plus d'informations, rendez-vous au forum des associations à la Salle des Fêtes de
+        Thoiry, ou bien contactez-nous directement sur la page
+        « <a href="/nous-contacter/">Nous contacter</a> ».
+      </p>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <h2 class="section-title">Horaires des cours</h2>
+      <div class="schedule">
+        {
+          schedule.map((course) => (
+            <article class="course-card">
+              <header>
+                <h3>{course.dance}</h3>
+                <p class="course-meta">
+                  avec <strong>{course.teacher}</strong> le <strong>{course.day}</strong>
+                </p>
+              </header>
+              <ul>
+                {course.slots.map((slot) => (
+                  <li>
+                    <span class="level">{slot.level}</span>
+                    <span class="time">{slot.time}</span>
+                  </li>
+                ))}
+              </ul>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .schedule {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+    margin-top: 32px;
+  }
+
+  .course-card {
+    background: #fff;
+    border-radius: 14px;
+    padding: 28px;
+    box-shadow: 0 8px 30px rgba(45, 143, 184, 0.1);
+    border-top: 4px solid var(--color-primary);
+  }
+
+  .course-card h3 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: var(--color-primary-dark);
+  }
+
+  .course-meta {
+    margin: 6px 0 18px;
+    font-size: 0.95rem;
+    color: var(--color-muted);
+  }
+
+  .course-card ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .course-card li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-top: 1px solid #eef3f6;
+  }
+
+  .level {
+    font-weight: 500;
+  }
+
+  .time {
+    font-family: var(--font-heading);
+    font-size: 0.9rem;
+    color: var(--color-heading);
+    background: var(--color-bg-alt);
+    padding: 4px 12px;
+    border-radius: 20px;
+  }
+
+  @media (max-width: 900px) {
+    .schedule {
+      grid-template-columns: 1fr;
+      max-width: 460px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+</style>

@@ -1,0 +1,122 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { site } from '../data/site';
+
+const events = [
+  {
+    date: 'Samedi 3 Janvier 2026',
+    title: 'Concert Cubain & Latino SBK',
+    paragraphs: [
+      "Une soirée concert Cubain & Latino SBK avec un orchestre (en cours de sélection) et DJ/Profs Filipe & Katia à la salle polyvalente de Thoiry.",
+    ],
+  },
+  {
+    date: 'Samedi 14 Mars 2026',
+    title: 'Soirée cubaine latino SBK — Barrio del Este',
+    paragraphs: [
+      "Soirée cubaine latino SBK avec orchestre. Elle commencera par un cours collectif de Salsa avec Filipe & Katia. Le groupe Barrio del Este mènera ensuite la soirée jusque vers minuit. Puis DJ Filipe prendra le relais pour nous emmener jusqu'au bout de la nuit… Un buffet sera présent pour accompagner cette super soirée.",
+      "Horaires : ouverture des portes vers 19h30, le cours de salsa évolutif à partir de 20h et le concert à partir de 21h. Une participation sera demandée (tarif en cours), avec une boisson offerte, le vestiaire et le parking inclus. Réservation conseillée (lien en cours).",
+      "Né en 2001, Barrio del Este a parcouru un long chemin depuis ses débuts et l'interprétation des classiques du « son cubano » : Poigny la Forêt (2018), Les Scènes du monde à Paris (2025), Festival TEMPO Latino 2025 à Vic-Fezensac, Pan Piper, etc.",
+    ],
+  },
+  {
+    date: 'Samedi 30 Mai 2026',
+    title: 'Soirée cubaine latino SBK — Sol de Cuba',
+    paragraphs: [
+      "L'orchestre Sol de Cuba revient à Thoiry pour une soirée cubaine latino SBK. Elle commencera par un cours collectif de Salsa avec Filipe & Katia. L'orchestre mènera ensuite la soirée jusque vers 23h. Puis DJ Filipe prendra le relais pour nous emmener jusqu'au bout de la nuit… Un buffet sera présent pour accompagner cette super soirée.",
+      "Horaires : ouverture des portes vers 19h30, le cours de salsa évolutif à partir de 20h et le concert à partir de 21h. Une participation sera demandée (tarif en cours), avec une boisson offerte, le vestiaire et le parking inclus. Réservation conseillée (lien en cours).",
+    ],
+  },
+];
+---
+
+<Layout title="Evènements">
+  <div
+    class="page-hero"
+    style="background-image: url('/uploads/2024/08/Event3-scaled.jpg');"
+  >
+    <h1>Evènements</h1>
+  </div>
+
+  <section class="section">
+    <div class="container" style="max-width: 900px;">
+      <p class="intro text-center">
+        Voilà nos prochains rendez-vous… N'hésitez pas à nous solliciter via notre mail
+        <a href={`mailto:${site.email}`}>{site.email}</a> ou via notre
+        <a href="/nous-contacter/">page contact</a>.
+      </p>
+
+      <div class="events">
+        {
+          events.map((event) => (
+            <article class="event-card">
+              <div class="event-date">{event.date}</div>
+              <div class="event-body prose">
+                <h3>{event.title}</h3>
+                {event.paragraphs.map((p) => (
+                  <p>{p}</p>
+                ))}
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .intro {
+    font-size: 1.1rem;
+    margin-bottom: 40px;
+  }
+
+  .events {
+    display: grid;
+    gap: 28px;
+  }
+
+  .event-card {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    background: #fff;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 8px 30px rgba(45, 143, 184, 0.1);
+  }
+
+  .event-date {
+    background: var(--color-primary);
+    color: #fff;
+    font-family: var(--font-heading);
+    font-size: 1.05rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 28px 20px;
+    line-height: 1.4;
+  }
+
+  .event-body {
+    padding: 28px 32px;
+  }
+
+  .event-body h3 {
+    margin-top: 0;
+    color: var(--color-primary-dark);
+  }
+
+  .event-body p:last-child {
+    margin-bottom: 0;
+  }
+
+  @media (max-width: 768px) {
+    .event-card {
+      grid-template-columns: 1fr;
+    }
+    .event-date {
+      padding: 16px;
+    }
+  }
+</style>

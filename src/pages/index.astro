@@ -1,0 +1,256 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { site } from '../data/site';
+
+const dances = [
+  {
+    name: 'Salsa',
+    paragraphs: [
+      "La salsa désigne à la fois un genre musical et une danse ayant des racines cubaines. Cette musique de danse au tempo vif est popularisée dans le monde entier.",
+      "A l'origine, le mot salsa ne désignait pas un rythme spécifique mais un ensemble de rythmes. Il en est cependant venu, en ce qui concerne la danse, à désigner une catégorie de musiques entraînantes, découlant spécifiquement du son et de la guaracha, épines dorsales de la variété cubaine.",
+      "Le style Casino, appelé en France « Salsa cubaine » a été chorégraphié dans les clubs et les écoles de danse de Cuba. Il se danse généralement sur le « 1 ». Il comprend une forte composante « afro », de nombreuses passes complexes, largement codifiées afin de pouvoir les exécuter dans une rueda (une danse où les couples forment un cercle, font les passes de manière synchronisée, et où les danseuses passent d'un danseur à l'autre). La danseuse se déplace constamment autour du danseur, de façon circulaire, y compris en tournant.",
+      "Les passes de salsa cubaine, contrairement à celles de salsa portoricaine, portent toutes un nom (en espagnol), ce qui permet d'avoir un « alphabet commun » pour les danseurs, à partir duquel effectuer toutes les combinaisons.",
+    ],
+  },
+  {
+    name: 'Bachata',
+    paragraphs: [
+      "La bachata est un rythme dansant originaire de République dominicaine, plein de folklore. On peut le considérer comme un mélange de boléro (surtout, le boléro rythmique) avec d'autres influences musicales d'origine africaine et avec d'autres styles comme le son, le merengue, le cha-cha-cha et le tango.",
+      "La bachata est jouée par plusieurs guitares (deux ou trois), accompagnées de percussions (bongo, maracas, güira) et une basse. On parle aussi de bolero campesino, bolero antillano ou cancion del amargue, une musique associée pendant longtemps aux couches sociales les plus défavorisées de Saint-Domingue.",
+      "Au tout début, la bachata était dédaignée car c'était une musique qui provenait des classes sociales basses.",
+      "L'expansion du tourisme en République dominicaine dans les années 1980 a offert à la bachata une popularité internationale, qui est alors devenue un symbole de la République dominicaine.",
+    ],
+  },
+  {
+    name: 'Kizomba',
+    paragraphs: [
+      "Né en Angola, ce genre musical connaît une grande audience par le chanteur angolais Eduardo Paím (pt) dans la dernière décennie du xxe siècle.",
+      "Le genre musical kizomba et la danse qui l'accompagne se sont développés dans l'ensemble des pays d'Afrique lusophones (Guinée-Bissau, Cap-Vert, Mozambique, Sao Tomé, etc.) avec des influences antillaises. Cela a engendré la naissance de styles très caractéristiques de certaines zones géographiques, tant en ce qui concerne la musique que la danse.",
+      "La kizomba, en tant que musique et danse de couple, a commencé à fortement pénétrer l'Europe en 2008, en commençant par le Portugal, précurseur depuis 1988 environ.",
+      "La kizomba (musique), née en 1980, est de base semba, avec un rythme zouk, avec une très forte influence zouk et kompa.",
+      "La kizomba (danse) s'appelle « Passada » en Angola, et est la même danse que le Semba, adaptée et légèrement modifiée pour cette nouvelle musique moderne.",
+    ],
+  },
+];
+---
+
+<Layout title={site.name} transparentHeader={true}>
+  <!-- Full-screen video hero: video fills the viewport, menu + content overlaid on top -->
+  <section class="hero">
+    <video
+      class="hero-video"
+      autoplay
+      muted
+      playsinline
+      loop
+      poster="/uploads/2024/08/103.jpg"
+    >
+      <source src="/uploads/2024/08/LosDiabV1-720.mp4" type="video/mp4" />
+    </video>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <img src={site.logo} alt="Los Diablitos" class="hero-logo" />
+      <h1>Association de Danse Latino à Thoiry</h1>
+      <p class="hero-sub">Salsa · Bachata · Kizomba</p>
+      <a href="/lescours/" class="btn">Découvrir les cours</a>
+    </div>
+    <a href="#bienvenue" class="scroll-cue" aria-label="Défiler vers le bas">
+      <span></span>
+    </a>
+  </section>
+
+  <!-- Intro -->
+  <section id="bienvenue" class="section">
+    <div class="container prose" style="max-width: 860px;">
+      <h2 class="section-title">Bienvenue à Los Diablitos 🙂</h2>
+      <p>
+        Los Diablitos est une petite association qui propose des cours de danses latines sur le
+        secteur de Thoiry dans les Yvelines. Les danses proposées sont les fameuses SBK, à savoir
+        <strong>Salsa</strong>, <strong>Bachata</strong> et <strong>Kizomba</strong>. Une petite
+        présentation de ces danses se trouve sur ce site, dans la rubrique
+        <a href="#histoire">Un peu d'histoire</a>.
+      </p>
+      <p>
+        L'association compte aujourd'hui une cinquantaine de membres. Les cours proposés sont en
+        fonction du nombre de personnes et de leur niveau. Les cours sont calés sur le rythme
+        scolaire, avec une constitution des groupes de niveau au mois de Septembre. Si tu es débutant
+        il est préférable de suivre ce rythme car cela permet de progresser en même temps que le
+        groupe. Si tu pratiques déjà tu peux intégrer un groupe en milieu d'année.
+      </p>
+      <p>
+        Pour le reste l'association organise une à deux soirées SBK par an, ouvertes à toutes les
+        personnes intéressées de la région. Enfin, les cours se déroulent dans la magnifique salle
+        polyvalente de Thoiry. L'ambiance est simple et conviviale, et il n'est pas rare de nous
+        retrouver après les cours pour un « after » improvisé, autour d'un verre ou bien directement
+        en soirée pour mettre en pratique ce qui a été vu…
+      </p>
+    </div>
+  </section>
+
+  <!-- Un peu d'histoire -->
+  <section id="histoire" class="section section-alt">
+    <div class="container">
+      <h2 class="section-title">Un peu d'histoire</h2>
+      <div class="dances">
+        {
+          dances.map((dance) => (
+            <article class="dance prose">
+              <h3>{dance.name}</h3>
+              {dance.paragraphs.map((p) => (
+                <p>{p}</p>
+              ))}
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .hero {
+    position: relative;
+    height: 100vh;
+    min-height: 560px;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hero-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+  }
+
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    background: linear-gradient(
+      to bottom,
+      rgba(26, 29, 33, 0.55) 0%,
+      rgba(26, 29, 33, 0.35) 45%,
+      rgba(26, 29, 33, 0.65) 100%
+    );
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 3;
+    text-align: center;
+    color: #fff;
+    padding: 0 24px;
+    animation: fade-up 1s ease both;
+  }
+
+  .hero-logo {
+    height: 130px;
+    width: auto;
+    margin: 0 auto 24px;
+    filter: drop-shadow(0 4px 16px rgba(0, 0, 0, 0.5));
+  }
+
+  .hero-content h1 {
+    color: #fff;
+    font-size: clamp(1.7rem, 5vw, 3.4rem);
+    margin: 0 0 14px;
+    text-shadow: 0 3px 18px rgba(0, 0, 0, 0.55);
+    letter-spacing: 1px;
+  }
+
+  .hero-sub {
+    font-family: var(--font-heading);
+    font-size: clamp(1rem, 2.5vw, 1.4rem);
+    letter-spacing: 4px;
+    margin: 0 0 32px;
+    color: var(--color-primary);
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+  }
+
+  .scroll-cue {
+    position: absolute;
+    bottom: 28px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
+    width: 26px;
+    height: 44px;
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    border-radius: 14px;
+    display: flex;
+    justify-content: center;
+    padding-top: 8px;
+  }
+
+  .scroll-cue span {
+    width: 4px;
+    height: 8px;
+    background: #fff;
+    border-radius: 2px;
+    animation: scroll-bounce 1.6s ease infinite;
+  }
+
+  @keyframes scroll-bounce {
+    0% {
+      opacity: 0;
+      transform: translateY(0);
+    }
+    40% {
+      opacity: 1;
+    }
+    80% {
+      opacity: 0;
+      transform: translateY(14px);
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .dances {
+    display: grid;
+    gap: 28px;
+    margin-top: 32px;
+  }
+
+  .dance {
+    background: #fff;
+    border-radius: 14px;
+    padding: 32px 36px;
+    box-shadow: 0 8px 30px rgba(45, 143, 184, 0.08);
+    border-top: 4px solid var(--color-primary);
+  }
+
+  .dance h3 {
+    margin-top: 0;
+    font-size: 1.7rem;
+  }
+
+  .dance p:last-child {
+    margin-bottom: 0;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-content,
+    .scroll-cue span {
+      animation: none;
+    }
+  }
+</style>

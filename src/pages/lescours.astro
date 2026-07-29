@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { site } from '../data/site';
+import { withBase } from '../lib/url';
 
 // Horaires et professeurs — saison 2026/2027
 const schedule = [
@@ -38,7 +39,7 @@ const schedule = [
 <Layout title="Les cours">
   <div
     class="page-hero"
-    style="background-image: url('/uploads/2024/08/103.jpg');"
+    style={`background-image: url('${withBase('/uploads/2024/08/103.jpg')}');`}
   >
     <h1>Les cours</h1>
   </div>
@@ -74,7 +75,7 @@ const schedule = [
       <p>
         Pour plus d'informations, rendez-vous au forum des associations à la Salle des Fêtes de
         Thoiry, ou bien contactez-nous directement sur la page
-        « <a href="/nous-contacter/">Nous contacter</a> ».
+        « <a href={withBase('/nous-contacter/')}>Nous contacter</a> ».
       </p>
     </div>
   </section>

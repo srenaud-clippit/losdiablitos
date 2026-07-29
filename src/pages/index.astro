@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { site } from '../data/site';
+import { withBase } from '../lib/url';
 
 const dances = [
   {
@@ -43,16 +44,16 @@ const dances = [
       muted
       playsinline
       loop
-      poster="/uploads/2024/08/103.jpg"
+      poster={withBase('/uploads/2024/08/103.jpg')}
     >
-      <source src="/uploads/2024/08/LosDiabV1-720.mp4" type="video/mp4" />
+      <source src={withBase('/uploads/2024/08/LosDiabV1-720.mp4')} type="video/mp4" />
     </video>
     <div class="hero-overlay"></div>
     <div class="hero-content">
-      <img src={site.logo} alt="Los Diablitos" class="hero-logo" />
+      <img src={withBase(site.logo)} alt="Los Diablitos" class="hero-logo" />
       <h1>Association de Danse Latino à Thoiry</h1>
       <p class="hero-sub">Salsa · Bachata · Kizomba</p>
-      <a href="/lescours/" class="btn">Découvrir les cours</a>
+      <a href={withBase('/lescours/')} class="btn">Découvrir les cours</a>
     </div>
     <a href="#bienvenue" class="scroll-cue" aria-label="Défiler vers le bas">
       <span></span>

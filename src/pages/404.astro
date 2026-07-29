@@ -1,15 +1,16 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { withBase } from '../lib/url';
 ---
 
 <Layout title="Page introuvable">
-  <div class="page-hero" style="background-image: url('/uploads/2024/08/103.jpg');">
+  <div class="page-hero" style={`background-image: url('${withBase('/uploads/2024/08/103.jpg')}');`}>
     <h1>404</h1>
   </div>
   <section class="section text-center">
     <div class="container">
       <p style="font-size: 1.2rem;">Oups ! Cette page n'existe pas ou plus.</p>
-      <p><a href="/" class="btn">Retour à l'accueil</a></p>
+      <p><a href={withBase('/')} class="btn">Retour à l'accueil</a></p>
     </div>
   </section>
 </Layout>

@@ -4,8 +4,13 @@ export const site = {
   email: 'info@losdiablitos.fr',
   facebook: 'https://www.facebook.com/association.losdiablitos',
   reglement: '/uploads/2024/08/LosDiablitos-ReglementInterieur.pdf',
-  // Inscription en ligne via HelloAsso (saison 2026/2027)
-  ficheInscription: 'https://www.helloasso.com/associations/los-diablitos/adhesions/fiche-d-inscription-2026-2027',
+  // Inscription en ligne via HelloAsso (saison 2026/2027).
+  inscriptionEnLigne:
+    'https://www.helloasso.com/associations/los-diablitos/adhesions/fiche-d-inscription-2026-2027',
+  // Fiche d'inscription papier (PDF) : aucune pour l'instant — la fiche est remise
+  // directement en cours. Pour proposer un téléchargement, déposer le PDF dans
+  // public/uploads/ et renseigner son chemin ici (ex. '/uploads/2026/09/fiche.pdf').
+  fichePdf: null as string | null,
   logo: '/uploads/2024/08/Logo200TransV2.png',
 };
 

@@ -56,21 +56,25 @@ const schedule = [
       </p>
 
       <p>
-        Deux façons de s'inscrire :
+        L'inscription se fait <strong>en ligne via HelloAsso</strong> : adhésion et paiement
+        directement sur la plateforme, où figurent les tarifs à jour.
+        {
+          site.fichePdf && (
+            <>
+              {' '}
+              Si vous préférez le papier, la fiche d'inscription peut être{' '}
+              <a href={rel(R, site.fichePdf)} target="_blank" rel="noopener">
+                téléchargée ici (PDF)
+              </a>{' '}
+              puis remise directement en cours, le lundi, le mercredi ou le jeudi.
+            </>
+          )
+        }
       </p>
-      <ul>
-        <li>
-          <strong>En ligne</strong> via HelloAsso (paiement de l'adhésion et tarifs à jour) ;
-        </li>
-        <li>
-          <strong>Sur papier</strong> : fiche d'inscription à apporter en cours (le lundi, le
-          mercredi ou le jeudi).
-        </li>
-      </ul>
 
       <p class="text-center">
-        <a href={site.ficheInscription} class="btn" target="_blank" rel="noopener">
-          &gt;&gt; Fiche d'inscription 2026/2027 &lt;&lt;
+        <a href={site.inscriptionEnLigne} class="btn" target="_blank" rel="noopener">
+          S'inscrire en ligne · Saison 2026/2027
         </a>
       </p>
 

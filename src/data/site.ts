@@ -6,11 +6,10 @@ export const site = {
   reglement: '/uploads/2024/08/LosDiablitos-ReglementInterieur.pdf',
   // Inscription en ligne via HelloAsso (saison 2026/2027).
   inscriptionEnLigne:
-    'https://www.helloasso.com/associations/los-diablitos/adhesions/fiche-d-inscription-2026-2027',
-  // Fiche d'inscription papier (PDF) : aucune pour l'instant — la fiche est remise
-  // directement en cours. Pour proposer un téléchargement, déposer le PDF dans
-  // public/uploads/ et renseigner son chemin ici (ex. '/uploads/2026/09/fiche.pdf').
-  fichePdf: null as string | null,
+    'https://www.helloasso.com/associations/los-diablitos/adhesions/inscription-2026-2027-2',
+  // Fiche d'inscription papier (PDF) à imprimer, remplir et remettre en cours.
+  // Mettre à null pour retirer cette option de la page « Les cours ».
+  fichePdf: '/uploads/2026/07/Inscription-2026-2027.pdf' as string | null,
   logo: '/uploads/2024/08/Logo200TransV2.png',
 };
 

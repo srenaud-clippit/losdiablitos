@@ -52,10 +52,9 @@ l'endroit où on le dépose (racine du domaine, `/V4`, `/test`, dossier renommé
 
 - **Horaires des cours & professeurs** : `src/pages/lescours.astro` (tableau `schedule`).
 - **Inscription en ligne** : `inscriptionEnLigne` dans `src/data/site.ts` (lien HelloAsso de la
-  saison 2026/2027).
-- **Fiche d'inscription papier (PDF)** : `fichePdf` dans `src/data/site.ts` vaut `null` par défaut
-  (la fiche est remise en cours, aucun téléchargement proposé). Pour ajouter un PDF : déposer le
-  fichier dans `public/uploads/` puis renseigner son chemin, ex.
-  `fichePdf: '/uploads/2026/09/fiche-inscription.pdf'` — un lien de téléchargement apparaît
-  alors automatiquement sur la page « Les cours ».
+  saison 2026/2027, qui porte aussi les tarifs).
+- **Fiche d'inscription papier (PDF)** : `fichePdf` dans `src/data/site.ts`, actuellement
+  `/uploads/2026/07/Inscription-2026-2027.pdf`. Pour changer de fiche, déposer le nouveau PDF
+  dans `public/uploads/` et mettre à jour ce chemin ; passer la valeur à `null` retire le bouton
+  papier et sa mention de la page « Les cours ».
 - **Contacts / téléphones** : `contacts` dans `src/data/site.ts`.
